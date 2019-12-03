@@ -280,5 +280,3 @@ class SinglyLinkedList:
             new_list.append(current_node.value)
             current_node = current_node.next
         return new_list
-
-print("I am deadshot and you are dust")
