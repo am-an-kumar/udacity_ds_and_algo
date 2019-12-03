@@ -18,8 +18,9 @@ class DoublyLinkedList:
         self.num_elements = 0
 
         # adding list items as nodes
-        for item in list:
-            self.append(item)
+        if list is not None:
+            for item in list:
+                self.append(item)
 
     def size(self):
         """ 
@@ -280,4 +281,22 @@ class DoublyLinkedList:
             counter += 1
         return None
 
-linked_list = DoublyLinkedList()
+    def reverse(self):
+        """
+        Creates a new linked list that is reverse of the original one and returns its reference
+            :params: - None
+            :output: -
+                ref - reference of newly created reversed linked list
+        Time complexity - O(n)
+        """
+        new_list = DoublyLinkedList()
+        current_node = self.tail
+        while current_node is not None:
+            new_list.append(current_node.value)
+            current_node = current_node.prev
+
+        return new_list
+
+
+linked_list = DoublyLinkedList([1, 3, 5, 7])
+print(linked_list.reverse())

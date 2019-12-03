@@ -264,3 +264,21 @@ class SinglyLinkedList:
         Time complexity ~ O(n) as it uses __str__() internally
         """
         return self.__str__()
+
+
+    def reverse(self):
+        """
+        Creates a new linked list that is reverse of the original one and returns its reference
+            :params: - None
+            :output: -
+                ref - reference of newly created reversed linked list
+        Time complexity - O(n)
+        """
+        new_list = SinglyLinkedList()
+        current_node = self.head
+        while current_node is not None:
+            new_list.append(current_node.value)
+            current_node = current_node.next
+        return new_list
+
+print("I am deadshot and you are dust")
