@@ -2,6 +2,7 @@ def add_one(arr):
     """
     :param: arr - list of digits representing some number x
     return a list with digits represengint (x + 1)
+    Time complexity = O(n)
     """
     index = len(arr) - 1
     carry = 1
