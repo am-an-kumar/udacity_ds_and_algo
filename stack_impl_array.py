@@ -103,3 +103,5 @@ class Stack:
         Time complexity - O(n)
         """
         return self.__str__()
+
+print("Just checking...")
