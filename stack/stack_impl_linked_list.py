@@ -125,12 +125,3 @@ class Stack:
         Time complexity - O(n)
         """
         return self.__str__()
-
-
-stack = Stack()
-stack.push(1)
-stack.push(2)
-stack.push(3)
-stack.push(4)
-stack.push(5)
-print(stack)

@@ -2,3 +2,4 @@
 .vscode
 script.py
 linked_list/problems.py
+*.pyc
