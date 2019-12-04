@@ -9,6 +9,7 @@ def equation_checker(equation):
        equation(string): String form of equation
     Returns:
        bool: Return if parentheses are balanced or not
+    Time complexity - O(n)
     """
     stack = Stack()
     for literal in equation:
