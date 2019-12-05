@@ -1,4 +1,3 @@
-# this is a stripped off version of linked list that has all we need to implement a queue
 class Queue:
     def __init__(self):
         self.list = []
