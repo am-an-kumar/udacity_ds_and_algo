@@ -8,7 +8,7 @@ def evaluate_postfix(input_list):
             input_list - list of operators/operands
         :output: -
             answer - evalutate postfix expression
-    Time complexity - 
+    Time complexity - O(n)
     """
     stack = Stack()
     for item in input_list:

@@ -24,8 +24,6 @@ class Node:
         return self.__str__()
 
 # this is a stripped off implementation of linked list. Just contains the APIs needed to implement a stack
-
-
 class Stack:
     def __init__(self):
         self.head = None
