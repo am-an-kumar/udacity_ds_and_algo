@@ -5,7 +5,7 @@ def sum_integers_recursive(n):
             n - integer ( n >= 1 )
         :output: -
             sum - (1 + 2 + .... + n)
-    Time complexity - O()
+    Time complexity - O(n)
     """
     if n == 1:
         return 1
