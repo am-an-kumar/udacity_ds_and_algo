@@ -19,16 +19,19 @@ Print messages:
 "Last record of calls, <incoming number> calls <answering number> at time <time>, lasting <during> seconds"
 """
 
-# i am not considering the time required to read from the files and store the data in lists
+"""
+    Runtime analysis
+    =========================
+    The entries in the csv files are already sorted w.r.t time, so the lists are already sorted w.r.t time.
+    Getting an element in a list using indexing is a O(1) operation.
+    Getting the length of python list is also a O(1) operation as lists store their length as meta data.
+    String.format() does formatting in O(1) time as the format() has only a few string substitutions to do and it does not depend on the input size as we are doing this for 1 enty in each file.
 
-# constant time to read the records, as len() has O(1) complexity
-first_text_record = texts[0]
-last_call_record = calls[len(calls) - 1]
+    Time complexity = O(n)
 
-# format() scans a text and does replacements, the replacements will be as much as the number of arguments for format()
+"""
+
 print("First record of texts, {} texts {} at time {}".format(
-    first_text_record[0], first_text_record[1], first_text_record[2]))
+    texts[0][0], texts[0][1], texts[0][2]))
 print("Last record of calls, {} calls {} at time {}, lasting {} seconds".format(
-    last_call_record[0], last_call_record[1], last_call_record[2], last_call_record[3]))
-
-# so, overall, my part of code will have a linear complexity, O(1)
+    calls[len(calls)-1][0], calls[len(calls)-1][1], calls[len(calls)-1][2], calls[len(calls)-1][3]))
