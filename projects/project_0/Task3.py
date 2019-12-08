@@ -44,23 +44,6 @@ to other fixed lines in Bangalore."
 The percentage should have 2 decimal digits
 """
 
-"""
-  Runtime Analysis
-  ===================================
-  To filter out banglore calls list: O(n)
-  To create area code and mobile prefix list - O(k), where k is the number of calls made by banglore people and k <= n
-  To create sets for area code and mobile prefix = 2 * O(k)
-  To iterate over unique area codes = O(x), where x is the unique number of area codes dialled by banglore people, where x <= k
-
-  To find call count for banglore landline to banglore landing = O(k)
-
-  Total time complexity = O(n) + 2*O(k) + O(x) + O(k)
-                        = O(n) + 3*O(k) + O(x)
-                        = k *O(n) = O(n)
-
-"""
-
-
 # filtering out calls made by people from banglore
 banglore_calls = [call for call in calls if call[0][0:5] == "(080)"]
 

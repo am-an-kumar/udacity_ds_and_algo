@@ -19,17 +19,6 @@ Print a message:
 "<telephone number> spent the longest time, <total time> seconds, on the phone during 
 September 2016.".
 """
-
-"""
-    Runtime Analysis
-    ==================================
-    Let number of records in calls list = n
-    Iterating it to add entry/ update entry in dictionary = O(n)
-    Iterating the dictionary of size k, where k <=n, as there would be duplicate entries in the list = O(k)
-
-    Time complexity = O(n) + O(k), which can be approximated to O(n)
-
-"""
 call_duration_records = dict()
 
 for record in calls:

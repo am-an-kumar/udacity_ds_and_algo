@@ -1,0 +1,72 @@
+Task-0
+=====================
+The entries in the csv files are already sorted w.r.t time, so the lists are already sorted w.r.t time.
+Getting an element in a list using indexing is a O(1) operation.
+Getting the length of python list is also a O(1) operation as lists store their length as meta data.
+String.format() does formatting in O(1) time as the format() has only a few string substitutions to do and it does not depend on the input size as we are doing this for 1 enty in each file.
+
+Time complexity = O(n)
+
+
+Task-1
+======================
+Lets say texts list has "m" records, while calls has "n" records
+First for loop for texts = O(m)
+Second for loop for calls = O(n)
+{Assuming list append is of O(1) complexity}
+
+Set constructor to filter out duplicate records will take each entry and insert it if it does not exist already, this will take O(1) to check if it exists already or not, and O(1) to add if it does not exist already. Therefore,
+Set constructor = O(m+n)
+
+overall complexity = O(m) + O(n) + O(m+n)
+But, we can approximate it to O(x) where x = m + n, as 2 * O(n) = O(n)
+
+
+Task-2
+========================
+Let number of records in calls list = n
+Iterating it to add entry/ update entry in dictionary = O(n)
+Iterating the dictionary of size k, where k <=n, as there would be duplicate entries in the list = O(k)
+
+Time complexity = O(n) + O(k), which can be approximated to O(n)
+
+
+Task-3
+=========================
+To filter out banglore calls list: O(n)
+To create area code and mobile prefix list - O(k), where k is the number of calls made by banglore people and k <= n
+To create sets for area code and mobile prefix = 2 * O(k)
+To iterate over unique area codes = O(x), where x is the unique number of area codes dialled by banglore people, where x <= k
+
+To find call count for banglore landline to banglore landing = O(k)
+
+Total time complexity = O(n) + 2*O(k) + O(x) + O(k)
+                    = O(n) + 3*O(k) + O(x)
+                    = k *O(n) = O(n)
+
+
+Task-4
+==========================
+Let the number of records in texts list = m, and 
+the number of records in calls list = n
+
+extracting data from texts list into two separate lists = O(2m) = O(m)
+extracting data from calls list into two separate lists = O(2n) = O(n)
+
+creating sets for all 4 lists = 2*O(n) + 2*O(m) = O(n) + O(m)
+
+now, the set unique callers would contain some entries say k, where k <= n
+We iterate it to do set operation of checking if a set has an element, and we do this in 3 sets, and append conditionally and the loop runs k times
+this = O(k)
+
+Then we sort the list created, the size of which is say l, where l <= k,
+then we sort it, time complexity = O(l log l)
+
+Then we iterate it l times to print the possible telemarketers list = O(l)
+
+Total time complexity = 2*O(n) + 2*O(m) + O(k) + O(l log l) + O(l)
+                        = O(n) + O(m) + O(k) + O(l) + O(l log l)
+
+But, for worst case time complexity, lets say input size is x, where x = m + n, total entries in calls and texts
+Then time complexity will be a * O(x), where a is some constant, so we ignore it,
+so the algorithm takes linear time, i.e. O(x)
