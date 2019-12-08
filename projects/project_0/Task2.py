@@ -20,3 +20,37 @@ Print a message:
 September 2016.".
 """
 
+"""
+    Runtime Analysis:
+    ==================================
+    Let number of records in calls list = n
+    Iterating it to add entry/ update entry in dictionary = O(n)
+    Iterating the dictionary of size k, where k <=n, as there would be duplicate entries in the list = O(k)
+
+    Time complexity = O(n) + O(k), which can be approximated to O(n)
+
+"""
+call_duration_records = dict()
+
+for record in calls:
+    if record[0] in call_duration_records:
+        call_duration_records[record[0]] += int(record[3])
+    else:
+        call_duration_records[record[0]] = int(record[3])
+
+    if record[1] in call_duration_records:
+        call_duration_records[record[1]] += int(record[3])
+    else:
+        call_duration_records[record[1]] = int(record[3])
+
+
+max_caller_duration = 0
+max_caller_number = ""
+
+for number in call_duration_records:
+    if call_duration_records[number] > max_caller_duration:
+        max_caller_duration = call_duration_records[number]
+        max_caller_number = number
+
+print("{} spent the longest time, {} seconds, on the phone during September 2016.".format(
+    max_caller_number, max_caller_duration))
