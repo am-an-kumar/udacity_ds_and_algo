@@ -43,3 +43,50 @@ Print the answer as a part of a message::
 to other fixed lines in Bangalore."
 The percentage should have 2 decimal digits
 """
+
+"""
+  Runtime Analysis
+  ===================================
+  To filter out banglore calls list: O(n)
+  To create area code and mobile prefix list - O(k), where k is the number of calls made by banglore people and k <= n
+  To create sets for area code and mobile prefix = 2 * O(k)
+  To iterate over unique area codes = O(x), where x is the unique number of area codes dialled by banglore people, where x <= k
+
+  To find call count for banglore landline to banglore landing = O(k)
+
+  Total time complexity = O(n) + 2*O(k) + O(x) + O(k)
+                        = O(n) + 3*O(k) + O(x)
+                        = k *O(n) = O(n)
+
+"""
+
+
+# filtering out calls made by people from banglore
+banglore_calls = [call for call in calls if call[0][0:5] == "(080)"]
+
+banglore_calls_area_codes = []
+banglore_calls_mobile_prefixes = []
+
+for call in banglore_calls:
+    if (call[1][0] == "7") or (call[1][0] == "8") or (call[1][0] == "9"):
+        banglore_calls_mobile_prefixes.append(call[1][0:4])
+    else:
+        banglore_calls_area_codes.append(call[1][0: (call[1].find(')') + 1)])
+
+
+unique_banglore_area_codes = set(banglore_calls_area_codes)
+unique_banglore_calls_mobile_prefixes = set(banglore_calls_mobile_prefixes)
+
+# PART A
+print("The numbers called by people in Bangalore have codes:\n")
+for area_code in unique_banglore_area_codes:
+    print(area_code)
+
+# PART 2
+fixed_to_fixed_count = 0
+for call in banglore_calls:
+    if call[1][0:5] == "(080)":
+        fixed_to_fixed_count += 1
+
+print("{} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.".format(
+    round(fixed_to_fixed_count/len(banglore_calls), 2)))
