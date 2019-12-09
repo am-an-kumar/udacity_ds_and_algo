@@ -7,6 +7,7 @@ class HashMap:
         # prime number used for hash code generation
         self.p = 37
         self.bucket_array = [None for _ in range(initial_size)]
+        self.load_factor = 0.7
 
     def compression_function(self, hashcode):
         """ 
@@ -47,6 +48,25 @@ class HashMap:
         """
         return self.compression_function(self.hash_function(key))
 
+    def rehash(self):
+        """ 
+        Rehashes the hash map to decrease the load factor
+            :params: - None
+            :output: - None
+        Time complexity - O()
+        """
+        self.num_entries = 0
+        old_bucket_array = self.bucket_array
+        self.bucket_array = [None for _ in range(2 * len(old_bucket_array))]
+
+        for bucket_entry in old_bucket_array:
+            current_node = bucket_entry.head if bucket_entry else None
+            while current_node is not None:
+                key = current_node.value["key"]
+                value = current_node.value["value"]
+                self.put(key, value)
+                current_node = current_node.next
+
     def put(self, key, value):
         """
         Adds an entry into hashmap, if already present, updates the value
@@ -69,7 +89,7 @@ class HashMap:
         else:
 
             # searching to find the entry, if found, we will update the value instead of creating a new entry
-            head = self.bucket_array[bucket_index]
+            head = self.bucket_array[bucket_index].head
             current_node = head
             while current_node is not None:
                 if current_node.value["key"] == key:
@@ -83,6 +103,10 @@ class HashMap:
             })
 
         self.num_entries += 1
+
+        # check for load factor
+        if (self.num_entries / len(self.bucket_array)) > self.load_factor:
+            self.rehash()
 
     def get(self, key):
         """
@@ -115,17 +139,3 @@ class HashMap:
         """
         return self.num_entries
 
-
-hash_map = HashMap()
-hash_map.put("one", 1)
-hash_map.put("two", 2)
-hash_map.put("three", 3)
-hash_map.put("neo", 11)
-
-print("size: {}".format(hash_map.size()))
-
-
-print("one: {}".format(hash_map.get("one")))
-print("neo: {}".format(hash_map.get("neo")))
-print("three: {}".format(hash_map.get("three")))
-print("size: {}".format(hash_map.size()))
