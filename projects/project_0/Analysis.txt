@@ -45,8 +45,7 @@ To find call count for banglore landline to banglore landing = O(k)
 
 Total time complexity = O(n) + 2*O(k) + O(k) + O(k) + O(k log k) + O(k) + O(k)
                     = O(n) + 6*O(k) + O(k log k)
-                    = a*O(n) = O(n)
-The above algorithm will have a linear time complexity = O(n)
+The above algorithm will have a quasi-linear time complexity = O(n log n)
 
 
 Task-4
@@ -72,8 +71,5 @@ Total time complexity = 2*O(a) + 2*O(b) + O(k) + O(l log l) + O(l)
                         = O(a) + O(b) + O(k) + O(l) + O(l log l)
 
 But, for worst case time complexity, lets say input size is n, where n = a + b, total entries in calls and texts
-Then time complexity will be c * O(n), where c is some constant, so we ignore it,
-so the algorithm takes linear time, i.e. O(n)
 
-
-Overall time complexity = O(n)
+Overall time complexity = O(n log n)
