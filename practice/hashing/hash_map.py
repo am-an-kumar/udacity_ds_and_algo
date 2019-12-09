@@ -53,7 +53,7 @@ class HashMap:
         Rehashes the hash map to decrease the load factor
             :params: - None
             :output: - None
-        Time complexity - O()
+        Time complexity - O(2 * current_bucket_size) + O(n) = O(n)
         """
         self.num_entries = 0
         old_bucket_array = self.bucket_array
@@ -67,6 +67,46 @@ class HashMap:
                 self.put(key, value)
                 current_node = current_node.next
 
+    def delete(self, key):
+        """
+        Deletes an entry from hashmap
+            :params: - 
+                key - key corresponding entry of which is to be deleted
+            :output: -
+                value - value removed from hashmap and None if no entry with the input key is found
+        Time complexity - O(n/b), n = number of entries in hashmap, b = number of buckets in bucket_array
+        Worst case complexity = O(n), if all entries end up in the same bucket
+        """
+        bucket_index = self.get_bucket_index(key)
+        if self.bucket_array[bucket_index] is None:
+            return None
+
+        else:
+            head = self.bucket_array[bucket_index].head
+            current_node = head
+            prev_node = None
+            while current_node is not None:
+                if current_node.value["key"] == key:
+                    # the first node needs to be removed
+                    if prev_node is None:
+                        value = current_node.value["value"]
+                        self.bucket_array[bucket_index].head = current_node.next
+                        self.num_entries -= 1
+                        return value
+
+                    # some node other than first node needs to be removed
+                    else:
+                        value = current_node.value["value"]
+                        prev_node.next = current_node.next
+                        self.num_entries -= 1
+                        return value
+
+                prev_node = current_node
+                current_node = current_node.next
+
+            # entry was not found
+            return None
+
     def put(self, key, value):
         """
         Adds an entry into hashmap, if already present, updates the value
@@ -74,7 +114,8 @@ class HashMap:
                 key - key of the value to insert
                 value - value 
             :output: - None
-        Time complexity - O()
+        Time complexity - O(1)
+        Worst case time complexity - O(n), if put causes rehashing
         """
         bucket_index = self.get_bucket_index(key)
 
@@ -115,10 +156,10 @@ class HashMap:
                 key - key of the value to get
             :output: -
                 value - value associated with the key or None if no such entry exists
-        Time complexity - O()
+        Time complexity - O(n/b)
+        Worst case time complexity - O(n)
         """
         bucket_index = self.get_bucket_index(key)
-
         if self.bucket_array[bucket_index] is None:
             return None
         else:
@@ -139,3 +180,23 @@ class HashMap:
         """
         return self.num_entries
 
+
+    def __str__(self):
+        """
+        Returns the string representation of hashmap
+            :params: - None
+            :output: -
+                string_repr - string representation of hashmap
+        Time complexity - O(1)
+        """
+        return "bucket: {}\nsize: {}\nload factor: {}\nPrime number used for hashing: {}".format(self.bucket_array, self.num_entries, self.load_factor, self.p)
+    
+    def __repr__(self):
+        """
+        Returns the string representation of hashmap
+            :params: - None
+            :output: -
+                string_repr - string representation of hashmap
+        Time complexity - O(1)
+        """
+        return "bucket: {}\nsize: {}\nload factor: {}\nPrime number used for hashing: {}".format(self.bucket_array, self.num_entries, self.load_factor, self.p)
