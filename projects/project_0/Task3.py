@@ -50,10 +50,11 @@ banglore_calls = [call for call in calls if call[0][0:5] == "(080)"]
 banglore_calls_area_codes = []
 banglore_calls_mobile_prefixes = []
 
+
 for call in banglore_calls:
     if (call[1][0] == "7") or (call[1][0] == "8") or (call[1][0] == "9"):
         banglore_calls_mobile_prefixes.append(call[1][0:4])
-    else:
+    elif call[1][0:2] == "(0":
         banglore_calls_area_codes.append(call[1][0: (call[1].find(')') + 1)])
 
 
@@ -62,7 +63,7 @@ unique_banglore_calls_mobile_prefixes = set(banglore_calls_mobile_prefixes)
 
 # PART A
 print("The numbers called by people in Bangalore have codes:\n")
-for area_code in unique_banglore_area_codes:
+for area_code in sorted(list(unique_banglore_area_codes.union(unique_banglore_calls_mobile_prefixes))):
     print(area_code)
 
 # PART 2
@@ -72,4 +73,4 @@ for call in banglore_calls:
         fixed_to_fixed_count += 1
 
 print("{} percent of calls from fixed lines in Bangalore are calls to other fixed lines in Bangalore.".format(
-    round(fixed_to_fixed_count/len(banglore_calls), 2)))
+    round(((fixed_to_fixed_count*100)/len(banglore_calls)), 2)))
