@@ -1,6 +1,7 @@
 class HashTable(object):
     def __init__(self):
-        self.table = [None]*10000
+        # 2526 as there are only these many values that our hash_function() can produce
+        self.table = [None]*2526
         self.num_elements = 0
 
     def store(self, string):
@@ -55,7 +56,7 @@ class HashTable(object):
                 hash_value - hash value of the string
         Time complexity - O(1)
         """
-        return ord(string[0]) * 100 + ord(string[1])
+        return (ord(string[0]) * 100 + ord(string[1])) - 6565
 
     def size(self):
         """
@@ -66,25 +67,3 @@ class HashTable(object):
         Time complexity - O(1)
         """
         return self.num_elements
-
-
-# Setup
-hash_table = HashTable()
-
-# Test calculate_hash_value
-# Should be 8568
-print(hash_table.calculate_hash_value('UDACITY'))
-
-# Test lookup edge case
-# Should be -1
-print(hash_table.lookup('UDACITY'))
-
-# Test store
-hash_table.store('UDACITY')
-# Should be 8568
-print(hash_table.lookup('UDACITY'))
-
-# Test store edge case
-hash_table.store('UDACIOUS')
-# Should be 8568
-print(hash_table.lookup('UDACIOUS'))
