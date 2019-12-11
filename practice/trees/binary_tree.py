@@ -110,6 +110,55 @@ class Tree:
                 traversal_list - list with the order in which nodes of the tree were traversed
         Time complexity - O()
         """
+        stack = Stack()
+        traversal_list = []
+        root = self.get_root()
+
+        if root is not None:
+            current_node = root
+            stack.push(current_node)
+
+            while not stack.is_empty():
+
+                # check if left subtree is traversed, if not traverse it
+                if not stack.is_left_visited():
+
+                    # adding node to traversal list
+                    # traversal_list.append(current_node.value)
+
+                    # if the node has got no left child
+                    if current_node.get_left_child() is None:
+                        stack.set_left_visited()
+                        continue
+
+                    stack.set_left_visited()
+                    current_node = current_node.get_left_child()
+                    stack.push(current_node)
+
+                    # check if right subtree is traversed, if not traverse it
+                elif not stack.is_right_visited():
+
+                    # adding node to traversal list
+                    traversal_list.append(current_node.value)
+
+                    # if the node has got no right child
+                    if current_node.get_right_child() is None:
+                        stack.set_right_visited()
+                        continue
+
+                    stack.set_right_visited()
+                    current_node = current_node.get_right_child()
+                    stack.push(current_node)
+
+                    # if both left and right subtree are traversed, pop the node from stack and set the current node as the new stack top
+                else:
+                    stack.pop()
+                    current_node = stack.top()
+                    if current_node is not None:
+                        current_node = current_node["node"]
+
+        return traversal_list
+
 
     def post_order_traverse(self):
         """
@@ -170,17 +219,21 @@ class Stack:
 
 
 # lets create a tree manually for now, since we have not created method to insert nodes into a tree
-# tree = Tree("1")
-# tree.get_root().set_left_child(Node("2"))
-# tree.get_root().set_right_child(Node("3"))
-# tree.get_root().get_left_child().set_left_child(Node("4"))
-# tree.get_root().get_left_child().set_right_child(Node("5"))
-# tree.get_root().get_right_child().set_left_child(Node("6"))
-# tree.get_root().get_right_child().set_right_child(Node("7"))
-# print(tree.pre_order_traverse())
+tree = Tree("1")
+tree.get_root().set_left_child(Node("2"))
+tree.get_root().set_right_child(Node("3"))
+tree.get_root().get_left_child().set_left_child(Node("4"))
+tree.get_root().get_left_child().set_right_child(Node("5"))
+tree.get_root().get_right_child().set_left_child(Node("6"))
+tree.get_root().get_right_child().set_right_child(Node("7"))
+print(tree.pre_order_traverse())
+print(tree.in_order_traverse())
+
+print()
 
 tree = Tree("apple")
 tree.get_root().set_left_child(Node("banana"))
 tree.get_root().set_right_child(Node("cherry"))
 tree.get_root().get_left_child().set_left_child(Node("dates"))
 print(tree.pre_order_traverse())
+print(tree.in_order_traverse())
