@@ -305,6 +305,42 @@ class Tree:
 
         return traversal_list
 
+    def level_order_traversal(self):
+        """
+        Traverses a tree level by level
+            :params: - None
+            :output: -
+                traversal_list - a list with the order in which elements were traversed
+        Time complexity - O()
+        """
+        queue = Queue()
+        traversal_list = []
+        root = self.get_root()
+
+        if root is not None:
+            queue.enqueue(root)
+
+            while not queue.is_empty():
+                # get the front of the queue
+                front = queue.front()
+
+                # put entry in traversal list
+                traversal_list.append(front.value)
+
+                # check if there is a left child, and enqueue if exists
+                if front.has_left_child():
+                    queue.enqueue(front.get_left_child())
+
+                # check if there is a right child, and enqueue if exists
+                if front.has_right_child():
+                    queue.enqueue(front.get_right_child())
+
+                # dequeue the queue
+                queue.dequeue()
+        
+        return traversal_list
+
+
     def __str__(self):
         """
         Returns the string representation of a tree
@@ -449,8 +485,8 @@ class Stack:
         if self.is_empty():
             return "Stack is empty"
         string_repr = "Top of stack\n===================\n"
-        for item in self.data:
-            string_repr += "{{left_visited: {}, node: {}, right_visited: {}}}".format(item["left_visited"], item["node"], item["right_visited"])
+        for node in reversed(self.data):
+            string_repr += "{{left_visited: {}, node: {}, right_visited: {}}}".format(node["left_visited"], node["node"], node["right_visited"])
         return string_repr
 
     def __repr__(self):
@@ -464,9 +500,105 @@ class Stack:
         if self.is_empty():
             return "Stack is empty"
         string_repr = "Top of stack\n===================\n"
-        for item in self.data:
-            string_repr += "{{left_visited: {}, node: {}, right_visited: {}}}".format(item["left_visited"], item["node"], item["right_visited"])
+        for node in reversed(self.data):
+            string_repr += "{{left_visited: {}, node: {}, right_visited: {}}}".format(node["left_visited"], node["node"], node["right_visited"])
         return string_repr
+
+class Queue:
+    def __init__(self):
+        """
+        Initializes a queue object
+            :params: - None
+            :output: - None
+        Time complexity - O(1)
+        """
+        self.data = []
+
+
+    def enqueue(self, node):
+        """
+        Enqueues a node to the end of the queue
+            :params: -
+                node - tree node to be enqueued
+            :output: - None
+        Time complexity - O(1)
+        """
+        self.data.append(node)
+
+    def dequeue(self):
+        """
+        Dequeues a node from the front of the queue
+            :params: - None
+            :output: -
+                node - node dequeued from the front of the queue / None if queue is empty
+        Time complexity - O(1)
+        """
+        if not self.is_empty():
+            return self.data.pop(0)
+        return None
+
+    def front(self):
+        """
+        Returns the front node from the queue without dequeuing it
+            :params: - None
+            :output: -
+                front - front node of the queue / None if the queue is empty
+        Time complexity - O(1)
+        """
+        if not self.is_empty():
+            return self.data[0]
+        return None
+
+    def size(self):
+        """
+        Returns the size of the queue
+            :params: - None
+            :output: -
+                size - number of elements in the queue
+        Time complexity - O(1)
+        """
+        return len(self.data)
+
+    def is_empty(self):
+        """
+        Checks if the queue is empty
+            :parms: - None
+            :output: -
+                is_empty - True/False based on whether the queue is empty or not
+        Time complexity - O(1)
+        """
+        return len(self.data) == 0
+
+    def __str__(self):
+        """
+        Returns the string representation of the queue
+            :params: - None
+            :output: -
+                string_repr - String representation of the queue
+        Time complexity - O(n)
+        """
+        if self.is_empty():
+            return "Queue is empty"
+        string_repr = "Front of Queue\n====================\n"
+        for node in self.data:
+            string_repr += "{}\n".format(node)
+        return string_repr
+
+    def __repr__(self):
+        """
+        Returns the string representation of the queue
+            :params: - None
+            :output: -
+                string_repr - String representation of the queue
+        Time complexity - O(n)
+        """
+        if self.is_empty():
+            return "Queue is empty"
+        string_repr = "Front of Queue\n====================\n"
+        for node in self.data:
+            string_repr += "{}\n".format(node)
+        return string_repr
+
 
 
 # lets create a tree manually for now, since we have not created method to insert nodes into a tree
@@ -482,6 +614,7 @@ tree.get_root().get_right_child().get_right_child().get_left_child().set_left_ch
 print(tree.pre_order_traverse())
 print(tree.in_order_traverse())
 print(tree.post_order_traverse())
+print(tree.level_order_traversal())
 
 print()
 
@@ -492,6 +625,7 @@ tree.get_root().get_left_child().set_left_child(Node("dates"))
 print(tree.pre_order_traverse())
 print(tree.in_order_traverse())
 print(tree.post_order_traverse())
+print(tree.level_order_traversal())
 
 
 stack = Stack()
