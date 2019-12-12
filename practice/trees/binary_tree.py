@@ -311,7 +311,7 @@ class Tree:
             :params: - None
             :output: -
                 traversal_list - a list with the order in which elements were traversed
-        Time complexity - O()
+        Time complexity - O(n)
         """
         queue = Queue()
         traversal_list = []
@@ -340,7 +340,14 @@ class Tree:
         
         return traversal_list
 
-
+    def print(self):
+        """
+        Prints the tree level by level
+            :params: - None
+            :output: - None
+        Time complexity - O(n)
+        """
+                
     def __str__(self):
         """
         Returns the string representation of a tree
@@ -615,6 +622,7 @@ print(tree.pre_order_traverse())
 print(tree.in_order_traverse())
 print(tree.post_order_traverse())
 print(tree.level_order_traversal())
+tree.print()
 
 print()
 
@@ -626,8 +634,4 @@ print(tree.pre_order_traverse())
 print(tree.in_order_traverse())
 print(tree.post_order_traverse())
 print(tree.level_order_traversal())
-
-
-stack = Stack()
-stack.push(Node("5"))
-print(stack)
+tree.print()
