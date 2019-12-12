@@ -110,6 +110,239 @@ class Node:
         """
         return "{{ left_child: {}, value: {}, right_child: {}}}".format(self.left.value if self.left else None, self.value, self.right.value if self.right else None)
 
+# to be used for DFS traversal of tree
+class Stack:
+    def __init__(self):
+        """
+        Initializes a stack object
+            :params: - None
+            :output: - None
+        Time complexity - O(1)
+        """
+        self.data = []
+    
+    def push(self, node):
+        """
+        Pushes a node on top of stack
+            :params: - 
+                node - node to be inserted on top of stack
+            :output: - None
+        Time complexity - O(1)
+        """
+        self.data.append({
+            'left_visited': False,
+            'node': node,
+            'right_visited': False
+        })
+
+    def pop(self):
+        """
+        Removes and returns the topmost element of stack
+            :params: - None
+            :output: -
+                node - node popped / None if stack is empty
+        Time complexity - O(1)
+        """
+        if len(self.data) == 0:
+            return None
+        return self.data.pop()
+
+    def top(self):
+        """
+        Returns the topmost element of stack without removing it
+            :params: - None
+            :output: -
+                node - topmost node of stack / None if stack is empty
+        Time complexity - O(1)
+        """
+        if len(self.data) == 0:
+            return None
+        return self.data[len(self.data) - 1]
+
+    def size(self):
+        """
+        Returns the size of the stack
+            :params: - None
+            :output: -
+                size - size of the stack
+        Time complexity - O(1)
+        """
+        return len(self.data)
+    
+    def is_empty(self):
+        """
+        Checks if stack is empty
+            :params: - None
+            :output: -
+                is_empty - True/False based on whether the stack is empty
+        Time complexity - O(1)
+        """
+        return len(self.data) == 0
+
+    def is_left_visited(self):
+        """
+        Checks if the left child is visited for the topmost node of stack
+            :params: - None
+            :output: -
+                is_left_visited - True/False based on whether the left child of topmost node of stack is visted
+        Time complexity - O(1)
+        """
+        return self.data[len(self.data) - 1] ["left_visited"]
+
+    def is_right_visited(self):
+        """
+        Checks if the right child is visited for the topmost node of stack
+            :params: - None
+            :output: -
+                is_right_visited - True/False based on whether the right child is visited for the topmost node of stack
+        Time complexity - O(1)
+        """
+        return self.data[len(self.data) - 1] ["right_visited"]
+
+    def set_left_visited(self):
+        """
+        Marks the left child visited for the topmost node of stack
+            :params: - None
+            :output: - None
+        Time complexity - O(1)
+        """
+        self.data[len(self.data) - 1] ["left_visted"] = True
+
+    def set_right_visted(self):
+        """
+        Marks the right child visited for the topmost node of stack
+            :params: - None
+            :outupt: - None
+        Time complexity - O(1)
+        """
+        self.data[len(self.data) - 1] ["right_visited"] = True
+
+    def __str__(self):
+        """
+        Returns the string representation of stack
+            :params: - None
+            :output: -
+                string_repr - String representation of stack
+
+        Time complexity - O(n)
+        """
+        if self.size() == 0:
+            return "Stack is empty"
+        string_repr = "Top of stack\n==================\n"
+        for item in reversed(self.data):
+            string_repr += "{{left_visited: {}, node: {}, right_visited: {}}}\n".format(item["left_visited"], item["node"], item["right_visited"])
+        return string_repr
+
+    def __repr__(self):
+        """
+        Returns the string representation of stack
+            :params: - None
+            :output: -
+                string_repr - String representation of stack
+
+        Time complexity - O(n)
+        """
+        if self.size() == 0:
+            return "Stack is empty"
+        string_repr = "Top of stack\n==================\n"
+        for item in reversed(self.data):
+            string_repr += "{{left_visited: {}, node: {}, right_visited: {}\n}}".format(item["left_visited"], item["node"], item["right_visited"])
+        return string_repr
+
+# to be used for BFS traversal of tree
+class Queue:
+    def __init__(self):
+        """
+        Initializes a queue object
+            :params: - None
+            :output: - None
+        Time complexity - O(1)
+        """
+        self.data = []
+
+    def enqueue(self, node):
+        """
+        Appends a node to the end of the queue
+            :params: -
+                node - node to enqueue
+            :output: - None
+        Time complexity - O(1)
+        """
+        self.data.append(node)
+
+    def dequeue(self):
+        """
+        Removes the first element of queue
+            :params: - None
+            :output: -
+                node - dequeued node of stack / None if queue is empty
+        Time complexity - O(1)
+        """
+        if len(self.data) == 0:
+            return None
+        return self.data.pop(0)
+
+    def front(self):
+        """
+        Returns the first element of queue without removing it
+            :params: - None
+            :output: -
+                node - first element of queue / None if queue is empty
+        Time complexity - O(1)
+        """
+        if len(self.data) == 0:
+            return None
+        return self.data[0]
+
+    def size(self):
+        """
+        Returns the size of queue
+            :params: - None
+            :output: -
+                size - number of elements in stack
+        Time complexity - O(1)
+        """
+        return len(self.data)
+
+    def is_empty(self):
+        """
+        Checks if a queue is empty
+            :params: - None
+            :output: -
+                is_empty - True/False based on whether the queue is empty
+        Time complexity - O(1)
+        """
+        return len(self.data) == 0
+
+    def __str__(self):
+        """
+        Returns the string representation of a node
+            :params: - None
+            :output: -
+                string_repr - string representation of a node
+        Time complexity - O(n)
+        """
+        if self.size() == 0:
+            return "Queue is empty"
+        string_repr = "Front of Queue\n==================\n"
+        for node in self.data:
+            string_repr += "{}\n".format(node)
+        return string_repr
+
+    def __repr__(self):
+        """
+        Returns the string representation of a node
+            :params: - None
+            :output: -
+                string_repr - string representation of a node
+        Time complexity - O(n)
+        """
+        if self.size() == 0:
+            return "Queue is empty"
+        string_repr = "Front of Queue\n==================\n"
+        for node in self.data:
+            string_repr += "{}\n".format(node)
+        return string_repr
 
 class BST:
     def __init__(self, value=None):
@@ -133,7 +366,7 @@ class BST:
         Time complexity - O(1)
         """
         return self.root
-    
+
     def traverse(self):
         """
         Returns a list traversed in ascending order,  i.e. in-order traversed
@@ -153,6 +386,15 @@ class BST:
         Time complexity - O()
         """
 
+    def level_traverse(self):
+        """ 
+        Returns a list of nodes traversed in level order from left to right
+            :params: - None
+            :output: -
+                traverse_list - list with level order left to right traversal
+        Time complexity - O()
+        """
+
     def search(self, value):
         """
         Searches the tree for a value
@@ -160,7 +402,9 @@ class BST:
                 value - value to search for
             :output: -
                 is_present - True/False based on whether the node is found
-        Time complexity - O()
+        Time complexity - 
+            Average complexity - O(log n)
+            Worst complexity - O(n)
         """
         root = self.get_root()
         current_node = root
@@ -176,7 +420,7 @@ class BST:
             if value < node_value:
                 current_node = current_node.get_left_child()
 
-            # node may be in the right subtree 
+            # node may be in the right subtree
             if value > node_value:
                 current_node = current_node.get_right_child()
 
@@ -206,7 +450,7 @@ class BST:
                     return
 
                 # left subtree insertion
-                elif value < node_value:                 
+                elif value < node_value:
                     # if the current node has no left child, create a new node and make it the left child of the current node
                     if not current_node.has_left_child():
                         current_node.set_left_child(Node(value))
@@ -281,3 +525,6 @@ for item in items:
 
 for item in items:
     print(tree.search(item))
+
+
+
