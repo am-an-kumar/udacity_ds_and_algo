@@ -133,7 +133,6 @@ class BST:
         Time complexity - O(1)
         """
         return self.root
-
     
     def traverse(self):
         """
@@ -143,6 +142,7 @@ class BST:
                 traverse_list - list with order in which nodes were traversed
         Time complexity - O()
         """
+
 
     def reverse_traverse(self):
         """
@@ -159,9 +159,28 @@ class BST:
             :params: -
                 value - value to search for
             :output: -
-                node - node with value match / None if no match is found
+                is_present - True/False based on whether the node is found
         Time complexity - O()
         """
+        root = self.get_root()
+        current_node = root
+
+        while current_node is not None:
+            node_value = current_node.get_value()
+
+            # node found
+            if value == node_value:
+                return True
+
+            # node may be in the left subtree
+            if value < node_value:
+                current_node = current_node.get_left_child()
+
+            # node may be in the right subtree 
+            if value > node_value:
+                current_node = current_node.get_right_child()
+
+        return False
 
     def insert(self, value):
         """
@@ -205,8 +224,6 @@ class BST:
                         return
                     # else go right
                     current_node = current_node.get_right_child()
-
-
 
     def delete(self, value):
         """
@@ -255,4 +272,12 @@ class BST:
         Time complexity - O()
         """
 
-print("Just checking!!!")
+
+tree = BST(10)
+items = [5, -1, -3, 9, 0, 13, 17, 14, 12]
+for item in items:
+    tree.insert(item)
+
+
+for item in items:
+    print(tree.search(item))
