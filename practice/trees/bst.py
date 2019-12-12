@@ -423,8 +423,49 @@ class BST:
             :params: - None
             :output: -
                 traverse_list - list with order in which nodes were traversed
-        Time complexity - O()
+        Time complexity - O(n)
         """
+        root = self.get_root()
+        traverse_list = []
+        stack = Stack()
+
+        if root is not None:
+            stack.push(root)
+            while not stack.is_empty():
+                current_node = stack.top()["node"]
+
+                # visiting right subtree if not visited already
+                if not stack.is_right_visited():
+                    # if right is None, mark it visited
+                    if not current_node.has_right_child():
+                        stack.set_right_visted()
+
+                    # else visit it
+                    else:
+                        stack.set_right_visted()
+                        stack.push(current_node.get_right_child())
+                        continue
+
+
+                # visiting left subtree if not visited already
+                if not stack.is_left_visited():
+                    # if left is None, mark it visited
+                    if not current_node.has_left_child():
+                        traverse_list.append(current_node.value)
+                        stack.set_left_visited()
+
+                    # else visit it
+                    else:
+                        traverse_list.append(current_node.value)
+                        stack.set_left_visited()
+                        stack.push(current_node.get_left_child())
+                        continue
+
+                # popping the node from stack if both left and right subtree is visited
+                if stack.is_left_visited() and stack.is_right_visited():
+                    stack.pop()
+
+        return traverse_list
 
     def level_traverse(self):
         """ 
@@ -567,5 +608,6 @@ for item in items:
     print(tree.search(item))
 
 print(tree.traverse())
+print(tree.reverse_traverse())
 
 
