@@ -585,8 +585,9 @@ class BST:
             :params: - None
             :output: -
                 string_repr - string representation of the tree
-        Time complexity - O()
+        Time complexity - O(n)
         """
+        return self.traverse()
 
     def __repr__(self):
         """
@@ -594,9 +595,9 @@ class BST:
             :params: - None
             :output: -
                 string_repr - string representation of the tree
-        Time complexity - O()
+        Time complexity - O(n)
         """
-
+        return self.traverse()
 
 tree = BST(10)
 items = [5, -1, -3, 9, 0, 13, 17, 14, 12]

@@ -158,14 +158,15 @@ class Tree:
                     # if the node has got no left child
                     if current_node.get_left_child() is None:
                         stack.set_left_visited()
+
+                    else:
+                        stack.set_left_visited()
+                        current_node = current_node.get_left_child()
+                        stack.push(current_node)
                         continue
 
-                    stack.set_left_visited()
-                    current_node = current_node.get_left_child()
-                    stack.push(current_node)
-
                     # check if right subtree is traversed, if not traverse it
-                elif not stack.is_right_visited():
+                if not stack.is_right_visited():
 
                     # adding node to traversal list
                     # traversal_list.append(current_node.value)
@@ -173,14 +174,15 @@ class Tree:
                     # if the node has got no right child
                     if current_node.get_right_child() is None:
                         stack.set_right_visited()
+
+                    else:
+                        stack.set_right_visited()
+                        current_node = current_node.get_right_child()
+                        stack.push(current_node)
                         continue
 
-                    stack.set_right_visited()
-                    current_node = current_node.get_right_child()
-                    stack.push(current_node)
-
                     # if both left and right subtree are traversed, pop the node from stack and set the current node as the new stack top
-                else:
+                if stack.is_left_visited() and stack.is_right_visited():
                     stack.pop()
                     current_node = stack.top()
                     if current_node is not None:
@@ -215,14 +217,15 @@ class Tree:
                     # if the node has got no left child
                     if current_node.get_left_child() is None:
                         stack.set_left_visited()
+
+                    else:
+                        stack.set_left_visited()
+                        current_node = current_node.get_left_child()
+                        stack.push(current_node)
                         continue
 
-                    stack.set_left_visited()
-                    current_node = current_node.get_left_child()
-                    stack.push(current_node)
-
                     # check if right subtree is traversed, if not traverse it
-                elif not stack.is_right_visited():
+                if not stack.is_right_visited():
 
                     # adding node to traversal list
                     traversal_list.append(current_node.value)
@@ -230,14 +233,15 @@ class Tree:
                     # if the node has got no right child
                     if current_node.get_right_child() is None:
                         stack.set_right_visited()
+
+                    else:
+                        stack.set_right_visited()
+                        current_node = current_node.get_right_child()
+                        stack.push(current_node)
                         continue
 
-                    stack.set_right_visited()
-                    current_node = current_node.get_right_child()
-                    stack.push(current_node)
-
                     # if both left and right subtree are traversed, pop the node from stack and set the current node as the new stack top
-                else:
+                if stack.is_left_visited() and stack.is_right_visited():
                     stack.pop()
                     current_node = stack.top()
                     if current_node is not None:
@@ -272,14 +276,15 @@ class Tree:
                     # if the node has got no left child
                     if current_node.get_left_child() is None:
                         stack.set_left_visited()
+
+                    else:
+                        stack.set_left_visited()
+                        current_node = current_node.get_left_child()
+                        stack.push(current_node)
                         continue
 
-                    stack.set_left_visited()
-                    current_node = current_node.get_left_child()
-                    stack.push(current_node)
-
                     # check if right subtree is traversed, if not traverse it
-                elif not stack.is_right_visited():
+                if not stack.is_right_visited():
 
                     # adding node to traversal list
                     # traversal_list.append(current_node.value)
@@ -287,14 +292,15 @@ class Tree:
                     # if the node has got no right child
                     if current_node.get_right_child() is None:
                         stack.set_right_visited()
+
+                    else:
+                        stack.set_right_visited()
+                        current_node = current_node.get_right_child()
+                        stack.push(current_node)
                         continue
 
-                    stack.set_right_visited()
-                    current_node = current_node.get_right_child()
-                    stack.push(current_node)
-
                     # if both left and right subtree are traversed, pop the node from stack and set the current node as the new stack top
-                else:
+                if stack.is_left_visited() and stack.is_right_visited():
                     stack.pop()
                     # adding node to traverse list
                     traversal_list.append(current_node.value)
