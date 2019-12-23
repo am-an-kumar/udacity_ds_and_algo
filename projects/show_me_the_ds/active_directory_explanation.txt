@@ -1,0 +1,3 @@
+Time complexity - O(n). This function has a usename and a group as input. The size of input is not going to vary, it will always be a string. But, if we assume the total number of users in the provided group to be "n", then the user can be a part of the group or any subgroup or not present in the group at all. Recursively it will take "n" checks.
+
+Space complexity - O(1), as we don't have any variables to store the result of any computation.
