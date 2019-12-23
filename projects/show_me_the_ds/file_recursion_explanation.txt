@@ -1,0 +1,3 @@
+time complexity - O(n), Here the input will be a path, so there is no size of input. But if we consider the total number of files in the given directory to be n, then for folders we recurse, and for files, we append to matched files list. So, n comparisions in any case.
+
+space complexity - O(n). We create a list for storing matching files, the max size of which is O(n) and that too at the end of iteration as python lists don't have predefined size. For subfolders, we store the list of all files.
