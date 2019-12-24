@@ -1,0 +1,9 @@
+Blockchain
+=================
+adding a block - O(k), where k = length of data of block
+searching for a block - O(k) + O(n), where k = length of data of block, n = number of blocks in blockchain.
+
+
+Block
+================
+creating a block - O(k), where k = length of data of block, O(k) as calculation of SHA256 hash value of a string takes linear time
