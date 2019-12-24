@@ -22,11 +22,13 @@ class Group(object):
 
 def is_user_in_group(user, group):
     """
-    Return True if user is in the group, False otherwise.
-
-    Args:
-      user(str): user name/id
-      group(class:Group): group to check user membership against
+    Returns True if user is in the group, False otherwise.
+        :params: -
+            user(str) - user name/id
+            group(class:Group) - group to check user membership against
+        :output: -
+            is_user_in_group(Boolean) - True/False based on whether the user is in group
+    Time complexity - O(n), where n = number of users in group
     """
     # matching against users in current group
     for group_user in group.get_users():

@@ -10,12 +10,12 @@ def find_files(suffix, path):
 
      There are no limit to the depth of the subdirectories can be.
 
-     Args:
-       suffix(str): suffix if the file name to be found
-       path(str): path of the file system
-
-     Returns:
-        a list of paths
+        :params: -
+            suffix(str) - suffix if the file name to be found
+            path(str) - path of the file system
+        :output: -
+            files(list) - list fo files with suffix present inside folder
+    Time complexity - O(n), where n = number of files inside a folder
     """
     match_files = []
 
