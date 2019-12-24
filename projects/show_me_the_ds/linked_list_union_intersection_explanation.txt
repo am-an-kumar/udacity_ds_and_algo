@@ -1,0 +1,18 @@
+union()
+=================
+There are 2 linked lists say L1 and L2
+Let size(L1) = m, and size(L2) = l
+
+Creating lists = O(m) + O(l)
+Creating set of both = O(m+l)
+Creating list back = O(m+l)
+Creating a linked list from this list = O(m+l)
+
+let m+l = n, total number of nodes combined. 
+Then, time complexity = O(n)
+
+intersection
+==================
+Same as above, complexity = O(n)
+
+The actual runtime will be less for intersection as the number of elements will be less in this case, but both methods will be of linear complexity
