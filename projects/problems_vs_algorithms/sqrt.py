@@ -5,7 +5,7 @@ def sqrt(number):
             number(int): Number to find the floored squared root
         Returns:
             int: Floored Square Root
-    Time complexity - O()
+    Time complexity - O(log(n))
     """
     if (number == 0) or (number == 1):
         return number
