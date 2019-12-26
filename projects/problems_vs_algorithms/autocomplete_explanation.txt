@@ -1,0 +1,7 @@
+Time complexity - For a particular autocomplete suggestion, we do 2 things: -
+1. Go to that Trie node
+2. Search for all complete words under the subtree of the TrieNode
+
+Worst case scenario is when we are looking for all the possibilites, so the whole Trie Tree will have to searched in that case.
+
+Worst case time complexity = O(n)
