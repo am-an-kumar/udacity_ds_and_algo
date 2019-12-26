@@ -1,2 +1,0 @@
-Time complexity = O(log(n))
-For a number say 100, we are searching for its square root in the range [1,50]. And eveytime the search space is reduced by half. So, it's like binary search with a worst case complexity of O(log(n))

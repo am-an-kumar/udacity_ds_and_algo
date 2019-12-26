@@ -1,0 +1,12 @@
+There was an observation to make here. Since the number of digits can differ by 1 only, if we sort the array and take alternate digits, we will come up with 2 solutions. And both will be valid solutions. So, i sorted the array and then picked alternate digits to form the numbers
+
+
+Time complexity = O(n log(n))
+    O(n log(n)) for sorting array using merge sort
+    O(n) for iterating over the array to form 2 numbers
+    Therefore, O(n log(n)) overall
+
+Space complexity = O(n)
+    O(n) for the sorted array
+    O(1) for few variables used
+    Therefore, O(n) overall

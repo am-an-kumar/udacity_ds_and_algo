@@ -60,9 +60,9 @@ class Router:
 
 
 # unit test cases
-
 router = Router("root handler", "not found handler")
 router.add_handler("/home/about", "about handler")
+router.add_handler("/products", "product handler")
 
 # some lookups with the expected output
 print(router.lookup("/"))
@@ -75,3 +75,7 @@ print(router.lookup("/home/about/"))
 # 'about handler'
 print(router.lookup("/home/about/me"))
 # 'not found handler'
+print(router.lookup("/product"))
+# 'not found handler'
+print(router.lookup("/products"))
+# 'product handler'

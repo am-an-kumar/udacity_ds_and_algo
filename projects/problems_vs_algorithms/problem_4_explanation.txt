@@ -1,0 +1,5 @@
+We had to sort an array with 3 possible elements only, 0, 1 and 2 in a single traversal. So, i modified the array in place, pushing the 2's at end, 0's at the beginning. Once a 0 is pushed at beginning, we consider the next spot the beginning, and once a 2 is pushed at the end, the position previous to that is our new end.
+
+
+Time complexity = O(n)
+Space complexity = O(1), just a few index and temp variables used

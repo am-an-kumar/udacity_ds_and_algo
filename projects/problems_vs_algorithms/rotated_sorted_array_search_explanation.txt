@@ -1,5 +1,0 @@
-Time complexity
-=======================
-In a typical binary search, the search space reduced to half on every iteration. So, if the size of array is n, and there are k steps, then 2^k = n. Applying log base 2 on each side, we get, k = log n.
-
-In this case, we are using binary search, as the array is sorted. But, its rotated too. So, on comparing with the mid element, we exit in case of a match, or else we apply binary search in both half. So, time complexity =  a * log(n), where a = some constant

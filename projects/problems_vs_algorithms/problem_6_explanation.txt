@@ -1,0 +1,4 @@
+It was required to find the minimum and maximum element of an array. So, there was no need to sort the whole array. The required complexity was O(n) and that too a single iteration. It was required to find out the max and min element in a single iteration. So, i assumed the first element to be the min as well as max element and traversed the whole array and did comparisions on every step.
+
+Time complexity = O(n), single iteration to find min and max
+Space complexity = O(1), 2 variables to store the min and max

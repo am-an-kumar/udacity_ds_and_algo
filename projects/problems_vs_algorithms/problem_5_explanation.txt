@@ -1,0 +1,13 @@
+Autocomplete was required to be implemented using Tries only, the reason being it is memory efficient, specially when the input size increases, using hashing has 2 issues, there is no reusability of text, requiring more memory, plus hashing function will give a large range of hash values and if we map that to array indices, we would need to use buckets at each index. So, the lookup won't happen in constant time, it would take O(n/b) time, where n = number of words, b = size of a bucket.
+suffixes() is just a normal function using already existing trie features. Lets say we have typed "an", and we want autocomplete suggestions here. So, we move to this node in trie, and then move to all other modes beneath it and check if there are words and return them.
+
+
+
+Time complexity - For a particular autocomplete suggestion, we do 2 things: -
+1. Go to that Trie node
+2. Search for all complete words under the subtree of the TrieNode
+
+Worst case scenario is when we are looking for all the possibilites, so the whole Trie Tree will have to searched in that case.
+Worst case time complexity = O(n), here n = number of Trie nodes and not number of words, cause the algorithm depends on the amount of nodes and not on the number of words stored in trie
+
+Space complexity = O(n), assuming Trie is an input to us. So, the size of it is not the concernn of my algorithm. But we create a result array to store all possibilites. If someone presses Ctrl+Space without typing anything, the whole Trie will be traversed. And if every trie node is a word, then we would have "n" entries in our result array, each of a finite, input independent size. So, k * O(n) = O(n)

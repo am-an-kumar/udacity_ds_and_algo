@@ -16,7 +16,6 @@ def get_min_max(input_list):
             max = number
         if number < min:
             min = number
-
     return (min, max)
 
 

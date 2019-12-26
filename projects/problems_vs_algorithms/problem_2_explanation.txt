@@ -1,0 +1,5 @@
+The input array is sorted, but rotated around a pivot. So we can't apply the traditional binary search. But if we pick any random number, and assume that it splits the input array in 2 parts, both these parts will be sorted. So, it is like a binary search in these 2 sub-arrays. The number we are looking for will be present in only 1 of these halves, so we take the max, as we will get -1 for the half that does not contain it.
+
+
+Time complexity = O(log(n)), like a modified version of binary search only
+Space complexity = O(1), as we are using the array in our recursive calls, not creating new instances. Just a few variables declared.

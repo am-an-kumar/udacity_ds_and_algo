@@ -1,0 +1,5 @@
+Square root of a number is a number less than half of it. I used this fact to initialize a search space from 0 to half of the number. I take the middle number, square it to see if it is the square root. The search either completes or the search space is reduced to half, like binary search
+
+
+Time complexity = O(log(n)), binary search like algorithm
+Space complexity = O(1), declared a few variables

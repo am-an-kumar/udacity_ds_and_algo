@@ -1,0 +1,18 @@
+Using a Trie for request routing part of a web server does not seem like that good of a choice. We could have used a dictionary for it, where 
+    key = path,
+    value = handler, text in our case, could be reference to a Python function
+
+But it was required to implement it using Trie only. In a normal Trie, like text editor autocomplete one, every character in a word is a node in our Trie tree, offcourse there is re-use. But in this case, we can't do that. The input HTTP request will have a URI, which will be in form of string, we need to treat it as a URI and design our Router accordingly.
+
+So, we have:
+1. Trie Node - stores a sub-path, the part between 2 /'s, each node has a handler associated with it. For paths that don't have any handler, None will be stored
+2. Trie - a collection of Trie Nodes, with root handler
+3. Router - Interface to work with. Has apis to split a request URL into sub-paths to facilitate lookup in trie. In case lookup fails, has reference to a 404 handler, in our case "just text". This could be put in Trie also, so that for failed lookup, it returns the reference to 404 handler.
+
+
+Time complexity = O(n), will happen in a trie structure like
+- products
+    - electronics
+        - smartphone
+There are no separates urls at top, and the request comes for "GET HTTP/1.1 /products/electronics/smartphone"
+Space complexity = O(n), for every sub-path, we create a trie node. If there is no resuability, there will be exactly n nodes for n sub-paths. With resuability this will decrease but in worst case O(n)

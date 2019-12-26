@@ -1,5 +1,4 @@
 def rotated_array_search_recursive(input_list, number, start_index, end_index):
-
     if start_index > end_index:
         return -1
 
