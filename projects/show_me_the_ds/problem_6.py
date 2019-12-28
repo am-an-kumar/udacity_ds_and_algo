@@ -215,7 +215,7 @@ class LinkedList:
             string.join() - O(n)
         overall ~= O(n)
         """
-        return ", ".join([str(item) for item in self.to_list()])
+        return "[" + ", ".join([str(item) for item in self.to_list()]) + "]"
 
     def search(self, value):
         """
@@ -273,7 +273,7 @@ class LinkedList:
                 ref - reference of newly created reversed linked list
         Time complexity - O(n)
         """
-        new_list = SinglyLinkedList()
+        new_list = LinkedList()
         current_node = self.head
         while current_node is not None:
             new_list.append(current_node.value)
@@ -294,8 +294,22 @@ def union(llist_1, llist_2):
     list_1 = llist_1.to_list()
     list_2 = llist_2.to_list()
 
-    list_union = list(set(list_1 + list_2))
-    return LinkedList(list_union)
+    return LinkedList(list(set(list_1 + list_2)))
+
+# def intersection(llist_1, llist_2):
+#     """
+#     Returns a linked list with intersection of nodes present in 2 input lists
+#         :params: -
+#             llist_1 - first linked list
+#             llist_2 - second linked list
+#         :output: - 
+#             output_list - intersection of first and second linked list
+#     Time complexity - O(n)
+#     """
+#     set_list_1 = set(llist_1.to_list())
+#     set_list_2 = set(llist_2.to_list())
+
+#     return LinkedList(list(set_list_1.intersection(set_list_2)))
 
 def intersection(llist_1, llist_2):
     """
@@ -307,43 +321,53 @@ def intersection(llist_1, llist_2):
             output_list - intersection of first and second linked list
     Time complexity - O(n)
     """
-    set_list_1 = set(llist_1.to_list())
-    set_list_2 = set(llist_2.to_list())
+    # creating dictionaries from list, we are using values as key of dict, and not interested in value, so we set it to None
+    dict_list_1 = {value: None for value in llist_1.to_list()}
+    dict_list_2 = {value: None for value  in llist_2.to_list()}
 
-    intersection_list = set_list_1.intersection(set_list_2)
-    return LinkedList(intersection_list)
+    out_list = []
+    for value in dict_list_1:
+        if value in dict_list_2:
+            out_list.append(value)
 
+    return LinkedList(out_list)
 
-    # Test case 1
+# My LinkedList implemenation has a constructor or __init__() that takes a list and creates a linked list with the list items as nodes. The output may have elements off in order as i am using a set and that is not guaranteed to have a definite order
 
-linked_list_1 = LinkedList()
-linked_list_2 = LinkedList()
-
-element_1 = [3,2,4,35,6,65,6,4,3,21]
-element_2 = [6,32,4,9,6,1,11,21,1]
-
-for i in element_1:
-    linked_list_1.append(i)
-
-for i in element_2:
-    linked_list_2.append(i)
+# Test case 1
+linked_list_1 = LinkedList([3,2,4,35,6,65,6,4,3,21])
+linked_list_2 = LinkedList([6,32,4,9,6,1,11,21,1])
 
 print (union(linked_list_1,linked_list_2))
+# [32, 65, 2, 35, 3, 4, 6, 1, 9, 11, 21]
 print (intersection(linked_list_1,linked_list_2))
+# [4, 21, 6]
 
 # Test case 2
+linked_list_1 = LinkedList([3,2,4,35,6,65,6,4,3,23])
+linked_list_2 = LinkedList([1,7,8,9,11,21,1])
 
-linked_list_3 = LinkedList()
-linked_list_4 = LinkedList()
+print (union(linked_list_1,linked_list_2))
+# [65, 2, 35, 3, 4, 6, 1, 7, 8, 9, 11, 21, 23]
+print (intersection(linked_list_1,linked_list_2))
+# []
 
-element_1 = [3,2,4,35,6,65,6,4,3,23]
-element_2 = [1,7,8,9,11,21,1]
 
-for i in element_1:
-    linked_list_3.append(i)
+# Test case 3
+linked_list_1 = LinkedList([])
+linked_list_2 = LinkedList([])
 
-for i in element_2:
-    linked_list_4.append(i)
+print (union(linked_list_1,linked_list_2))
+# []
+print (intersection(linked_list_1,linked_list_2))
+# []
 
-print (union(linked_list_3,linked_list_4))
-print (intersection(linked_list_3,linked_list_4))
+
+# Test case 4
+linked_list_1 = LinkedList(['a', 'b', 'c', 'd'])
+linked_list_2 = LinkedList(['d', 'e', 'f', 'g'])
+
+print(union(linked_list_1, linked_list_2))
+# [d, b, e, f, g, c, a]
+print(intersection(linked_list_1, linked_list_2))
+# [d]

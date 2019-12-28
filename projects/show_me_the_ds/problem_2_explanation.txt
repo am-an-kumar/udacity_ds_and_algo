@@ -1,3 +1,7 @@
+I used the os module. It has api that checks if the path provided is a file or a folder, and in case it is a folder, i used the listdir() api to get the list of files in a folder, and i did recursively to listt all the files in a directory and there is a basic filter that checks for extenstion and adds the file path to output only if the extension matches.
+
+# I am not considering the time complexity of the apis provided by the os module. It is a complexity evalutation of the code that i wrote.
+
 time complexity - O(n), Here the input will be a path, so there is no size of input. But if we consider the total number of files in the given directory to be n, then for folders we recurse, and for files, we append to matched files list. So, n comparisions in any case.
 
 space complexity - O(n). We create a list for storing matching files, the max size of which is O(n) and that too at the end of iteration as python lists don't have predefined size. For subfolders, we store the list of all files.

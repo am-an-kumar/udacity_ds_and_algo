@@ -35,13 +35,22 @@ def find_files(suffix, path):
     return match_files
 
 
+# the output is based on the content of the folders in tested the script against at the time of execution, the output will change on different machine, and even on my machine if i modify the folder
 # tests for relative paths
 print("Test 1")
 print(find_files('.exe', '../'))
+# []
 
 print("Test 2")
 print(find_files('.py', './'))
+# ['./problem_1.py', './problem_2.py', './problem_3.py', './problem_4.py', './problem_5.py', './problem_6.py']
 
 # test for absolute path, this path contained the test directory to test
 print("Test 3")
 print(find_files('.c', r'C:\Users\amank\Downloads\testdir'))
+# ['C:\\Users\\amank\\Downloads\\testdir\\subdir1\\a.c', 'C:\\Users\\amank\\Downloads\\testdir\\subdir3\\subsubdir1\\b.c', 'C:\\Users\\amank\\Downloads\\testdir\\subdir5\\a.c', 'C:\\Users\\amank\\Downloads\\testdir\\t1.c']
+
+# test for non-existenet file extension, will return an empty list
+print("Test 4")
+print(find_files('.pcap', './'))
+# []

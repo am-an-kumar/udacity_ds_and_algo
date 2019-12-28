@@ -1,3 +1,6 @@
+Union and intersection of 2 lists were to be found. I have created a Linked List implementation which returns a list with all the node values in a linked list. I pass it to a set to remove duplicates and then perform union or intersection. After that, we create a list back from the resulting set and pass it to LinkedList constructor i created. The reason for this approach was that we needed to remove duplicates too. There is no ordering for the linked list, so for every node in the first list, we would need to check if that exists in the other one and that would be an operation with O(m * n) complexity, where m, n are the sizes of the two lists.
+
+
 union()
 =================
 There are 2 linked lists say L1 and L2
@@ -5,14 +8,42 @@ Let size(L1) = m, and size(L2) = l
 
 Creating lists = O(m) + O(l)
 Creating set of both = O(m+l)
-Creating list back = O(m+l)
+Creating list back = O(m+l), the number of elements in the set will be <= m + l
 Creating a linked list from this list = O(m+l)
 
 let m+l = n, total number of nodes combined. 
 Then, time complexity = O(n)
 
+Space complexity 
+========
+Created 2 lists = O(m) + O(l)
+Created a set with union of 2 lists = O(m+l)
+Created a list from this set = O(m+l)
+Created a linked list and returned it = O(m+l)
+Space complexity = O(m) + O(l) + 3 * O(m+l) = O(m) + O(l) + 3 * O(n) = O(n), where n = m + l
+
+
 intersection
 ==================
-Same as above, complexity = O(n)
+Set intersection time complexity 
+=================
+Average case = O(min(len(s1), len(s2))
+Worst case = O(len(s1) * len(s2))
+Source = "https://wiki.python.org/moin/TimeComplexity"
 
-The actual runtime will be less for intersection as the number of elements will be less in this case, but both methods will be of linear complexity
+So, it's a bad idea to use set here. I used dictionary instead
+
+Creating dict_1 = O(m)
+Creating dict_2 = O(l)
+
+Creating list with intersection of keys in dict_1 and dict_2 = O(max(m, l))
+Creating Linked list from this intersection list = O(max(m, l))
+
+So, time complexity = O(m) + O(l) + 2 * O(max(m, l)) = O(n), where n = max(m, l)
+
+Space complexity 
+=========
+Created 2 dictionaries = O(m) + O(l)
+Created list with elements in both = O(max(m, l))
+Created linked list from the above list = O(max(m, l))
+Space complexity = O(m) + O(l) + 2 * O(max(m, l)) = O(m) + O(l) = 2 * O(n) = O(n), where n = max(m, l)
