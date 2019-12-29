@@ -1,0 +1,21 @@
+In huffman coding, the idea is to create a frequency list of characters in the text to encode. And then we create a node for each of them, and then combine 2 of them in ascending order to create a new node where frequency = sum of frequency of both child nodes. For this, i could have created a list, popped 2 nodes from the list and pushes 1 back until there was only 1 node left, at which point we would have got our huffman tree. But, i have used heap for that to simplify merging of nodes. The key is the character and the value being the frequency. The rest is straight forward, you get a text, you construct a tree for it and whenever you have to decode a huffman string, we use this very tree. Cause the structure of tree may change if we try to re-create it. Like if 2 characters have same frequency, their code may change for the next tree creation. So, it is compulsary to use the same huffman tree. Or atleast the same logic, like sorting a list by frequency and lexicographically afterwards to ensure order, instead of using a heap. And then having the same mapping like 0 is left and 1 is right both at encoding and decoding time.
+
+
+Time complexity 
+========================
+encode() = O(n log(n)), here n = size of string to encode
+    For encode, the individual steps are:
+        1. Making a dictionary of character frequencies = O(n)
+        2. Creating huffman tree = O(nlog(n))
+        3. Getting encoded text = O(n)
+
+decode() = O(n), here n = size of encoded string, as we will traverse the tree until we reach the leaf, from where we pick a character, and then start at root again until nothing is left to decode. So, number of traversals in the tree will be equal to the length of text to decode
+
+Space complexity
+=======================
+encode() = O(n)
+    dictionary of frequencies = O(n)
+    Tree = O(n)
+
+decode() = O(1)
+    We already have huffman tree and text to decode as input, we just traverse the tree to find original text. The size of original text will depend on the encoded text, but there is no direct relationship. Since there is no data structure we are creating to store it, we can ignore it. 
