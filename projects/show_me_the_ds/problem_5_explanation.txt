@@ -1,9 +1,27 @@
+The implementation idea was already given. We had to create nodes for a block and link them in a blockchain using linked list. That is what i need
+
 Blockchain
 =================
-adding a block - O(k), where k = length of data of block
-searching for a block - O(k) + O(n), where k = length of data of block, n = number of blocks in blockchain.
+adding a block - O(k), where k = length of data of block. This is because it is simple assignments, except for the hash we need to calculate, and that would need O(k) time to find hash of a string of length "k"
+
+
+searching for a block - O(k) + O(n), where k = length of data of block, n = number of blocks in blockchain. This is because we create a hash of the data and then use this for comparision in the block chain
+
+Space complexity = O(x), where x = l * n,
+l = number of nodes in a blockchain
+n = size of a single block, this is not constant as it depends on the size of data that is stored in a block
 
 
 Block
 ================
 creating a block - O(k), where k = length of data of block, O(k) as calculation of SHA256 hash value of a string takes linear time
+
+Space complexity = O(n)
+A block has following data, with their sizes as:
+timestamp = constant size
+data - n, where n = length of data
+prev_hash - constant size
+hash - constant size, does not depend on input size, as SHA256 hashing is used 
+prev_ref - reference to previous block, constant size
+
+

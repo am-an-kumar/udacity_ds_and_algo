@@ -1,0 +1,15 @@
+I tried using a dictionary for storing the cache, and linked list to keep track of the element to remove. The reason being we can't use stack or queue, cause we don't just need to maintain the LRU element, but the whole access order. Then it was not possible to write code to perform cache operations in O(1) time, cause linked list operations will have O(n) complexity. Then i talked to my mentor, and he told me why don't you store node reference as value in dictionary. Then you can remove it in constant time for a double linked list. So, Kotti, my mentor helped me come up with the logic.
+
+
+Time complexity
+==================
+O(1)
+LRU cache is implemented using dictionary, so all operations are O(1)
+We are using double linked list to keep track of order of access, updating it takes O(1) time as we are storing the node reference as value in our dictionary
+
+
+Space complexity
+=====================
+O(n)
+LRU cache has a dictionary of size n, i.e. O(n)
+Double Linked List to keep track of access order has a size of n, i.e. O(n)
