@@ -1,4 +1,5 @@
 def rotated_array_search_recursive(input_list, number, start_index, end_index):
+    # this check takes care of empty list condition
     if start_index > end_index:
         return -1
 
@@ -40,13 +41,18 @@ def test_function(test_case):
     input_list = test_case[0]
     number = test_case[1]
     if linear_search(input_list, number) == rotated_array_search(input_list, number):
-        print("Pass")
+        return True
     else:
-        print("Fail")
+        return False
 
 
-test_function([[6, 7, 8, 9, 10, 1, 2, 3, 4], 6])
-test_function([[6, 7, 8, 9, 10, 1, 2, 3, 4], 1])
-test_function([[6, 7, 8, 1, 2, 3, 4], 8])
-test_function([[6, 7, 8, 1, 2, 3, 4], 1])
-test_function([[6, 7, 8, 1, 2, 3, 4], 10])
+print("Pass" if test_function([[6, 7, 8, 9, 10, 1, 2, 3, 4], 6]) else "Fail")
+print("Pass" if test_function([[6, 7, 8, 9, 10, 1, 2, 3, 4], 1]) else "Fail")
+print("Pass" if test_function([[6, 7, 8, 1, 2, 3, 4], 8]) else "Fail")
+print("Pass" if test_function([[6, 7, 8, 1, 2, 3, 4], 1]) else "Fail")
+print("Pass" if test_function([[6, 7, 8, 1, 2, 3, 4], 10]) else "Fail")
+print("Pass" if test_function([[10], 10]) else "Fail")
+
+# we are checking for pass as we are comparing the output of linear search and our algorithm, so if both give the same output, which is -1 for these 2 test cases, all is good.
+print("Pass" if test_function([[], 10]) else "Fail")
+print("Pass" if test_function([[4, 4, 4], 10]) else "Fail")
